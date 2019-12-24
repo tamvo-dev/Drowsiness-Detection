@@ -46,7 +46,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 
     private static final int mTimeSleep = 2000;
     private static int mCountSleep = 0;
-    private float mSleepProbability = 0.2f;
+    private float mSleepProbability = 0.3f;
     private static boolean isSleep = false;
 
     FaceGraphic(GraphicOverlay overlay) {
@@ -110,9 +110,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
                 if(playing == false){
                     mCountSleep++;
                     playing = true;
+                    Log.e("TAG", mCountSleep + "");
                     if (mCountSleep > 3){
-                        Log.e("TAG", "Show Dialog");
                         showDiaLog();
+                        mCountSleep = 0;
                     } else {
                         playAudio();
                     }
@@ -179,6 +180,9 @@ class FaceGraphic extends GraphicOverlay.Graphic {
             @Override
             public void run() {
                 playing = false;
+                if (VideoFaceDetectionActivity.mediaPlayer != null){
+                    VideoFaceDetectionActivity.mediaPlayer.reset();
+                }
             }
         }, 2500);
     }
