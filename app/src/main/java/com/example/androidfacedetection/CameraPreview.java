@@ -112,8 +112,6 @@ public class CameraPreview extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 
-//        int width = 1280;
-//        int height = 720;
         int width = bottom - top;
         int height = right - left;
 

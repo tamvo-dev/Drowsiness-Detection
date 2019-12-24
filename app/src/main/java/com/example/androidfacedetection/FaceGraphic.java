@@ -110,7 +110,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
                 if(playing == false){
                     mCountSleep++;
                     playing = true;
-                    Log.e("TAG", mCountSleep + "");
                     if (mCountSleep > 3){
                         Log.e("TAG", "Show Dialog");
                         showDiaLog();
@@ -121,8 +120,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
                 }
 
             }catch (Exception e){
-                Log.e("TAG", e.getMessage());
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
 
@@ -150,7 +148,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
                 dialogInterface.dismiss();
                 mediaPlayerOver.pause();
                 playing = false;
-                Log.e("TAG", "Dis miss");
             }
         });
 
@@ -176,8 +173,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         as.close();
         VideoFaceDetectionActivity.mediaPlayer.prepare();
         VideoFaceDetectionActivity.mediaPlayer.start();
-
-        Log.e("TAG", "Dia chi: " + VideoFaceDetectionActivity.mediaPlayer.toString());
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

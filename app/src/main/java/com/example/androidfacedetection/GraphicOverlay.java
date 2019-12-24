@@ -23,7 +23,7 @@ public class GraphicOverlay extends View {
     }
 
     public void clear() {
-        //Object var1 = this.mLock;
+
         synchronized(this.mLock) {
             this.mGraphics.clear();
         }
@@ -32,7 +32,7 @@ public class GraphicOverlay extends View {
     }
 
     public void add(GraphicOverlay.Graphic graphic) {
-        //Object var2 = this.mLock;
+
         synchronized(this.mLock) {
             this.mGraphics.add(graphic);
         }
@@ -41,7 +41,7 @@ public class GraphicOverlay extends View {
     }
 
     public void remove(GraphicOverlay.Graphic graphic) {
-        //Object var2 = this.mLock;
+
         synchronized(this.mLock) {
             this.mGraphics.remove(graphic);
         }
@@ -50,7 +50,7 @@ public class GraphicOverlay extends View {
     }
 
     public void setCameraInfo(int previewWidth, int previewHeight, int facing) {
-        //Object var4 = this.mLock;
+
         synchronized(this.mLock) {
             this.mPreviewWidth = previewWidth;
             this.mPreviewHeight = previewHeight;
@@ -62,7 +62,7 @@ public class GraphicOverlay extends View {
 
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //Object var2 = this.mLock;
+
         synchronized(this.mLock) {
             if (this.mPreviewWidth != 0 && this.mPreviewHeight != 0) {
                 this.mWidthScaleFactor = (float)canvas.getWidth() / (float)this.mPreviewWidth;
