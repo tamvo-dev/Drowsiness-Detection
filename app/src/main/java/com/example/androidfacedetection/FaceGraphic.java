@@ -15,6 +15,9 @@ import android.view.View;
 import com.google.android.gms.vision.face.Face;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 
 import static com.example.androidfacedetection.VideoFaceDetectionActivity.context;
@@ -44,10 +47,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
     private int mFaceId;
     private static Boolean playing = false;
 
-    private static final int mTimeSleep = 2000;
     private static int mCountSleep = 0;
     private float mSleepProbability = 0.3f;
-    private static boolean isSleep = false;
+    private static int mCounter = 0;
+
 
     FaceGraphic(GraphicOverlay overlay) {
         super(overlay);
@@ -102,27 +105,34 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("Right Eye" + face.getIsRightEyeOpenProbability(), 0, canvas.getHeight(), mIdPaint);
 
         if(face.getIsRightEyeOpenProbability()<mSleepProbability && face.getIsLeftEyeOpenProbability()<mSleepProbability){
-            p.setColor(Color.RED);
-            p.setTextSize(280);
-            canvas.drawText("SLEEPY", 0,canvas.getHeight()/2, p);
 
-            try{
-                if(playing == false){
-                    mCountSleep++;
-                    playing = true;
-                    Log.e("TAG", mCountSleep + "");
-                    if (mCountSleep > 3){
-                        showDiaLog();
-                        mCountSleep = 0;
-                    } else {
-                        playAudio();
+            mCounter++;
+            if (mCounter == 20){
+                mCounter = 0;
+                p.setColor(Color.RED);
+                p.setTextSize(260);
+                canvas.drawText("SLEEPY", 0,canvas.getHeight()/2, p);
+
+                try{
+                    if(playing == false){
+                        mCountSleep++;
+                        playing = true;
+
+                        if (mCountSleep > 3){
+                            showDiaLog();
+                            mCountSleep = 0;
+                        } else {
+                            playAudio();
+                        }
+
                     }
 
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-
-            }catch (Exception e){
-                e.printStackTrace();
             }
+        } else{
+            mCounter = 0;
         }
 
         // Draws a bounding box around the face.
@@ -155,16 +165,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-    }
-
-    private void checkSleep(){
-        if (isSleep == false)
-            return;
-        try {
-            playAudio();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void playAudio() throws IOException {

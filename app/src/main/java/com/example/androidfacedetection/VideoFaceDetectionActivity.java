@@ -152,7 +152,7 @@ public class VideoFaceDetectionActivity extends AppCompatActivity {
     private class GraphicFaceTrackerFactory implements MultiProcessor.Factory<Face> {
         @Override
         public Tracker<Face> create(Face face) {
-//            Toast.makeText(VideoFaceDetectionActivity.this, String.valueOf(face.getIsLeftEyeOpenProbability()), Toast.LENGTH_SHORT).show();
+
             return new GraphicFaceTracker(mGraphicOverlay);
         }
     }
