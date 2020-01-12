@@ -78,6 +78,9 @@ public class VideoFaceDetectionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Create cameraSource
+     */
     private void createCameraSource() {
         Context context = getApplicationContext();
         FaceDetector detector = new FaceDetector.Builder(context)

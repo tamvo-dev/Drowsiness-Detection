@@ -145,6 +145,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawRect(left, top, right, bottom, mBoxPaint);
     }
 
+    /**
+     * Show warning on screen
+     * @throws IOException
+     */
     private void showDiaLog() throws IOException {
 
         VideoFaceDetectionActivity.mediaPlayerOver.start();
@@ -167,6 +171,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 
     }
 
+    /**
+     * Play alert sound
+     * @throws IOException
+     */
     private void playAudio() throws IOException {
 
         AssetFileDescriptor as = context.getAssets().openFd("alarm.wav");

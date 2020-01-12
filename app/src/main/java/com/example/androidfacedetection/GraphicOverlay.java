@@ -31,6 +31,10 @@ public class GraphicOverlay extends View {
         this.postInvalidate();
     }
 
+    /**
+     * Add a graphic
+     * @param graphic
+     */
     public void add(GraphicOverlay.Graphic graphic) {
 
         synchronized(this.mLock) {
@@ -40,6 +44,10 @@ public class GraphicOverlay extends View {
         this.postInvalidate();
     }
 
+    /**
+     * Remove a graphic
+     * @param graphic
+     */
     public void remove(GraphicOverlay.Graphic graphic) {
 
         synchronized(this.mLock) {
@@ -49,6 +57,12 @@ public class GraphicOverlay extends View {
         this.postInvalidate();
     }
 
+    /**
+     * Set width, height
+     * @param previewWidth
+     * @param previewHeight
+     * @param facing
+     */
     public void setCameraInfo(int previewWidth, int previewHeight, int facing) {
 
         synchronized(this.mLock) {
@@ -60,6 +74,10 @@ public class GraphicOverlay extends View {
         this.postInvalidate();
     }
 
+    /**
+     * Draw each face
+     * @param canvas
+     */
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
